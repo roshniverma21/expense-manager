@@ -2,12 +2,13 @@ package com.example.springboot.expensetracker.service;
 
 import com.example.springboot.expensetracker.entity.Expense;
 import com.example.springboot.expensetracker.repository.ExpenseRepository;
+import com.example.springboot.expensetracker.exceptions.ExpenseNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
-import java.util.List;
+
 import java.util.Optional;
 
 @Service
@@ -22,13 +23,12 @@ public class ExpenseServiceImpl implements ExpenseService{
     }
 
     @Override
-    public Expense getExpenseById(Long id) {
+    public Expense getExpenseById(Long id) throws ExpenseNotFoundException {
         Optional<Expense> expense = expenseRepository.findById(id);
-        if(expense.isPresent()){
+        if (expense.isPresent()) {
             return expense.get();
         }
-
-        throw new RuntimeException("expense is not found for id : " + id);
+        throw new ExpenseNotFoundException("Expense is not found for the id "+id);
     }
 
     @Override
