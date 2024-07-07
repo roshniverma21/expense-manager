@@ -39,4 +39,9 @@ public class ExpenseServiceImpl implements ExpenseService{
 
         throw new RuntimeException("expense is not found for id : " + id);
     }
+
+    @Override
+    public Expense saveExpenseDetails(Expense expense) {
+        return expenseRepository.save(expense);
+    }
 }

@@ -14,18 +14,23 @@ public class ExpenseController {
     private ExpenseService expenseService;
 
     @GetMapping("/expenses")
-    public List<Expense> getExpensesList(){
+    public List<Expense> getExpensesList() {
         return expenseService.getAllExpenses();
     }
 
     @GetMapping("/expenses/{id}")
-    public Expense getExpenseById(@PathVariable("id") Long id){
+    public Expense getExpenseById(@PathVariable("id") Long id) {
         return expenseService.getExpenseById(id);
     }
 
     @DeleteMapping("/expenses")
-    public String deleteExpenseById(@RequestParam("id") Long id){
+    public String deleteExpenseById(@RequestParam("id") Long id) {
         expenseService.deleteExpenseById(id);
         return "the expense is deleted with id: " + id;
+    }
+
+    @PostMapping("/expenses")
+    public Expense saveExpenseDetails(@RequestBody Expense expense) {
+        return expenseService.saveExpenseDetails(expense);
     }
 }
