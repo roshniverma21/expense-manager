@@ -2,7 +2,7 @@ package com.example.springboot.expensetracker.service;
 
 import com.example.springboot.expensetracker.entity.Expense;
 import com.example.springboot.expensetracker.repository.ExpenseRepository;
-import com.example.springboot.expensetracker.exceptions.ExpenseNotFoundException;
+import com.example.springboot.expensetracker.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -23,12 +23,12 @@ public class ExpenseServiceImpl implements ExpenseService{
     }
 
     @Override
-    public Expense getExpenseById(Long id) throws ExpenseNotFoundException {
+    public Expense getExpenseById(Long id) throws ResourceNotFoundException {
         Optional<Expense> expense = expenseRepository.findById(id);
         if (expense.isPresent()) {
             return expense.get();
         }
-        throw new ExpenseNotFoundException("Expense is not found for the id "+id);
+        throw new ResourceNotFoundException("Expense is not found for the id "+id);
     }
 
     @Override
