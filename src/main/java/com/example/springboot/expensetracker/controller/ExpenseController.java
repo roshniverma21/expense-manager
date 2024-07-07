@@ -19,12 +19,13 @@ public class ExpenseController {
     }
 
     @GetMapping("/expenses/{id}")
-    public String getExpenseById(@PathVariable("id") Long id){
-        return "the expense id: " + id;
+    public Expense getExpenseById(@PathVariable("id") Long id){
+        return expenseService.getExpenseById(id);
     }
 
     @DeleteMapping("/expenses")
     public String deleteExpenseById(@RequestParam("id") Long id){
-        return "the deleteed expense id: " + id;
+        expenseService.deleteExpenseById(id);
+        return "the expense is deleted with id: " + id;
     }
 }
