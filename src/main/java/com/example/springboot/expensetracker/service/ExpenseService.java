@@ -5,6 +5,9 @@ import com.example.springboot.expensetracker.exceptions.ResourceNotFoundExceptio
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Date;
+import java.util.List;
+
 public interface ExpenseService {
     Page<Expense> getAllExpenses(Pageable page);
 
@@ -15,4 +18,10 @@ public interface ExpenseService {
     Expense saveExpenseDetails(Expense expense);
 
     Expense updateExpenseDetailsById(Expense expense, Long id);
+
+    List<Expense> readByCategory(String category, Pageable page);
+
+    List<Expense> readByName(String keyword, Pageable page);
+
+    List<Expense> readByDate(Date startDate, Date endDate, Pageable page);
 }

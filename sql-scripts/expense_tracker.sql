@@ -13,14 +13,16 @@ CREATE TABLE expense
     description VARCHAR(255) NOT NULL,
     amount DOUBLE(5, 2) NOT NULL,
     category VARCHAR(255) NOT NULL,
-    date DATE NOT NULL
+    date DATE NOT NULL,
+    created_at timeStamp,
+    updated_at timeStamp
 );
 
 --
 -- Data for table `employee`
 --
 INSERT INTO expense(expense_name, description, amount, category, date)
-VALUES("Water bill", "water bill", 600.00, "Bills", "2021-10-14");
+VALUES("Water bill", "water bill", 600.00, "Bills", "2024-07-14");
 
 INSERT INTO expense(expense_name, description, amount, category, date)
-VALUES("Electricity bill", "electricity bill", 900.00, "Bills", "2021-10-13");
+VALUES("Electricity bill", "electricity bill", 900.00, "Bills", "2024-07-13");
